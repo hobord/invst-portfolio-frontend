@@ -1,0 +1,9 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: 'yarn && yarn build'
+    command: 'yarn watch'
+ports:
+  - port: 8080
+    onOpen: open-preview  

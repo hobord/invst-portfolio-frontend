@@ -3,7 +3,7 @@ image:
 
 tasks:
   - init: 'yarn && yarn build'
-    command: 'yarn watch'
+    command: 'yarn serve'
 ports:
   - port: 8080
     onOpen: open-preview  

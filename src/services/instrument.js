@@ -1,7 +1,7 @@
 import { GLOBAL_CONFIG } from "../config"
 
-export const GetInvestments = async (keyword) => {
-    let request_url = `${GLOBAL_CONFIG.endpoints.investments}/keyword=${keyword}`
+export const GetInstruments = async (keyword) => {
+    let request_url = `${GLOBAL_CONFIG.endpoints.instruments}/keyword=${keyword}`
     let response = await fetch(request_url)
     if (response.ok) {
         let json = await response.json();

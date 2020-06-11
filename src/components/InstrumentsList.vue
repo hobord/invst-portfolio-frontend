@@ -1,29 +1,35 @@
 <template>
 <div>
     <ul>
-        <li v-for="(index, instrument) in instruments"  :key="instrument.instrumentId">
-            -{{instrument.name}}-
+        <li v-for="(instrument) in instruments"  :key="instrument.instrumentId">
+            {{instrument.name}}
+            <button v-on:click="deleteInstrument(instrument.instrumentId, $event)">delete</button>
         </li>
     </ul>
 </div>
 </template>
 
 <script>
-import { GetInstruments } from '../services/instrument'
+import instrumentService from '../services/instrument.service'
 
 export default {
     name: 'InstrumentsList',
     data: function () {
         return {
+            keyword: "",
             instruments: []
         }
     },
-    created: async function () {
-        this.instruments = await GetInstruments("")
+    beforeMount: async function () {
+        await this.loadInstruments()
     },
     methods: {
-        loadInstruments: async function () {
-            this.instruments = await GetInstruments("")
+        async loadInstruments () {
+            this.instruments = await instrumentService.GetInstruments(this.keyword)
+        },
+        async deleteInstrument (id) {
+            await instrumentService.DeleteInstrument(id)        
+            this.loadInstruments(this.keyword)
         }
     }
 }

@@ -4,7 +4,7 @@ module.exports = {
     devServer: {
         disableHostCheck: true,
         before: function(app, server, compiler) {
-            app.get('/instruments', function(req, res) {
+            app.get('/instruments/', function(req, res) {
                 const content = fs.readFileSync('mock/instruments_list.json', 'utf8');
                 const resp = JSON.parse(content);
                 res.json(resp);
@@ -14,7 +14,7 @@ module.exports = {
                 const resp = JSON.parse(content);
                 res.json(resp);
             });
-            app.delete('/instruments', function(req, res) {
+            app.delete('/instruments/:ID', function(req, res) {
                 const content = fs.readFileSync('mock/instrument_delete.json', 'utf8');
                 const resp = JSON.parse(content);
                 res.json(resp);

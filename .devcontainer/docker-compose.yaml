@@ -1,0 +1,20 @@
+version: "2.1"
+services:
+    node:
+        working_dir: /workspace
+        image: node:13
+        command: /bin/sh -c "while sleep 1000; do :; done"
+        user: node
+        ports:  
+        - "8080:8080"
+        volumes:
+        - ..:/workspace:cached
+        # - node-modules:/workspace/node_modules
+        environment:
+          no_proxy: "localhost"
+          NODE_ENV: "development"
+          APP_PORT": "8080"
+          NODE_TLS_REJECT_UNAUTHORIZED": "0"
+
+# volumes:
+#   node-modules:

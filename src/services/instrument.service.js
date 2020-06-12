@@ -23,8 +23,21 @@ const DeleteInstrument = async (id) => {
         alert("HTTP-Error: " + response.status);
     }
 }
-
+const CreateInstruments = async (newInstrument) => {
+    let request_url = `${GLOBAL_CONFIG.endpoints.instruments}`
+    let response = await fetch(request_url, {
+        method: "post",
+        body: JSON.stringify(newInstrument)
+    })
+    if (response.ok) {
+        let json = await response.json().catch(reason => alert(reason));
+        return json
+    } else {
+        alert("HTTP-Error: " + response.status);
+    }
+}
 export default {
     GetInstruments,
-    DeleteInstrument
+    DeleteInstrument,
+    CreateInstruments
 }

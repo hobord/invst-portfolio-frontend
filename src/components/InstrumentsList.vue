@@ -131,9 +131,11 @@ export default {
       this.$store
         .dispatch("instrumentList/createInstrument", this.newInstrument)
         .then((result) => {
-          console.log("New instrument created:")
-          console.log(result)
-          this.cancelCreate()
+          if (result) {
+            console.log("New instrument created:")
+            console.log(result)
+            this.cancelCreate()
+          }
         });
     },
     cancelCreate() {

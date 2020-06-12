@@ -1,13 +1,14 @@
 import { GLOBAL_CONFIG } from "../config"
 
 const GetInstruments = async (keyword) => {
-    let request_url = `${GLOBAL_CONFIG.endpoints.instruments}/?keyword=${keyword}`
+    let request_url = `${GLOBAL_CONFIG.endpoints.instruments}?keyword=${keyword}`
     let response = await fetch(request_url)
     if (response.ok) {
         let json = await response.json().catch(reason => alert(reason));
         return json
     } else {
-        alert("HTTP-Error: " + response.status);
+        const msg =  await response.text()
+        alert("HTTP-Error: " + response.status + ", " + msg);
     }
 }
 
@@ -20,7 +21,8 @@ const DeleteInstrument = async (id) => {
         let json = await response.json().catch(reason => alert(reason));
         return json
     } else {
-        alert("HTTP-Error: " + response.status);
+        const msg =  await response.text()
+        alert("HTTP-Error: " + response.status + ", " + msg);
     }
 }
 const CreateInstruments = async (newInstrument) => {
@@ -33,7 +35,8 @@ const CreateInstruments = async (newInstrument) => {
         let json = await response.json().catch(reason => alert(reason));
         return json
     } else {
-        alert("HTTP-Error: " + response.status);
+        const msg =  await response.text()
+        alert("HTTP-Error: " + response.status + ", " + msg);
     }
 }
 export default {

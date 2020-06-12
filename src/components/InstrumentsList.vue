@@ -24,17 +24,22 @@
         <h3>Create New</h3>
         <div class="field">
           <div class="control">
-            <input id="name" type="text" v-model="newInstrument.name" placeholder="name" class="input"/>
+            <input id="id" type="number" v-model.trim.number="newInstrument.id" placeholder="id" class="input"/>
           </div>
         </div>
         <div class="field">
           <div class="control">
-            <input id="symbol" type="text" v-model="newInstrument.symbol" placeholder="symbol" class="input"/>
+            <input id="name" type="text" v-model.trim="newInstrument.name" placeholder="name" class="input"/>
           </div>
         </div>
         <div class="field">
           <div class="control">
-            <input id="type" type="text" v-model="newInstrument.instrumentType" placeholder="type" class="input"/>
+            <input id="symbol" type="text" v-model.trim="newInstrument.symbol" placeholder="symbol" class="input"/>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <input id="type" type="text" v-model.trim="newInstrument.instrumentType" placeholder="type" class="input"/>
           </div>
         </div>
         <div class="field is-grouped is-grouped-centered">
@@ -95,6 +100,7 @@ export default {
     return {
       newFormVisible: false,
       newInstrument: {
+        id: null,
         name:'',
         symbol: '',
         instrumentType: ''
@@ -140,6 +146,7 @@ export default {
     },
     cancelCreate() {
       this.newInstrument = {
+        id: null,
         name:'',
         symbol: '',
         instrumentType: ''
